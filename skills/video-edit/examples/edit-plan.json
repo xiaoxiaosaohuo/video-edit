@@ -1,0 +1,50 @@
+{
+  "fps": 30,
+  "duration": 13.6,
+  "base_export": "output/film-v1.mp4",
+  "shots": [
+    {
+      "index": 0,
+      "id": "clip-001",
+      "source": "media/clip-001.mp4",
+      "in": 0.8,
+      "duration": 4.0,
+      "timeline_start": 0.0,
+      "transition_after": 0.4,
+      "label": "交代环境的远景",
+      "foreground_audio": false,
+      "gain_db": 0
+    },
+    {
+      "index": 1,
+      "id": "clip-002",
+      "source": "media/clip-002.mp4",
+      "in": 12.0,
+      "duration": 6.0,
+      "timeline_start": 3.6,
+      "transition_after": 0.0,
+      "label": "一次完整的亲子互动",
+      "foreground_audio": true,
+      "gain_db": 0
+    },
+    {
+      "index": 2,
+      "id": "clip-003",
+      "source": "media/clip-003.mp4",
+      "in": 1.0,
+      "duration": 4.0,
+      "timeline_start": 9.6,
+      "transition_after": 0.0,
+      "label": "动作结束后的反应",
+      "foreground_audio": true,
+      "gain_db": 0
+    }
+  ],
+  "revision_notes": [],
+  "outputs": {
+    "master": "output/film-4k.mp4",
+    "preview": "output/film-1080p.mp4",
+    "share": "output/film-share.mp4",
+    "cover": "output/cover.jpg"
+  }
+}
