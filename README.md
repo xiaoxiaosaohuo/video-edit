@@ -2,7 +2,7 @@
 
 把本地拍摄素材整理成有故事、对白完整、方便分享的家庭或旅行短片。内容来自一次实际完成的剪辑：选素材、多轮按时间修改、补充亲子互动、压缩分享版、制作封面和清理中间文件。
 
-这是供 Agent 读取的技能文档，使用 FFmpeg / FFprobe 执行剪辑。仓库只保存方法与示例；实际素材、照片、音频和成片放在本地项目中。
+这是供 Agent 读取的技能与可执行工具，使用 FFmpeg / FFprobe 执行剪辑。仓库保存技能文档、工具与合成素材测试；实际素材、照片、音频和成片放在本地项目中。
 
 ## 使用
 
@@ -24,6 +24,7 @@
 | [剪辑与修订](skills/video-edit/references/editing.md) | 选片、故事结构、对白剪点、时间映射 |
 | [FFmpeg 参数](skills/video-edit/references/ffmpeg.md) | 素材探测、代理图、转场、音频、导出和大小计算 |
 | [视频封面](skills/video-edit/references/covers.md) | 真实画面封面、首帧、封面轨道及时间基问题 |
+| [运行工具](skills/video-edit/references/runtime.md) | 从最终清单重建、媒体验收与连续审片 |
 | [剪辑清单示例](skills/video-edit/examples/edit-plan.json) | 用原片时间和成片时间记录每个镜头 |
 
 ## 本地项目结构
@@ -32,7 +33,9 @@
 my-film/
 ├── media/             # 原片或原片所在目录的引用
 ├── edit-plan.json     # 镜头清单、修订所依据的版本
-├── work/              # 联系表、渲染片段、临时音轨
+├── assets/            # 持久配乐、片名和封面，清理缓存时保留
+├── review/            # 连续审片片段、转写与审片决定
+├── work/              # 联系表和可重建的渲染缓存
 └── output/
     ├── film-4k.mp4
     ├── film-1080p.mp4
@@ -51,3 +54,9 @@ FFmpeg 和 FFprobe 是基础依赖。需要生成联系表时可用 Python 与 P
 - 只给 MP4 添加封面图还不够：同时处理首帧，并单独交付封面图片。
 - 拼接视频统一时间基。容器总时长正确，也可能掩盖视频轨道变短的问题。
 - 最终交付验证后，再按用户要求删除旧版和缓存；保留原片、最终导出和剪辑清单。
+
+## 可执行工具
+
+入口为 `python3 skills/video-edit/scripts/video_edit.py --help`。先运行 `review` 生成连续审片包，完成审片后使用 `render --review` 从最终清单重建；`verify` 独立检查媒体轨道、时长、帧数、解码和封面。完整命令见 [运行工具](skills/video-edit/references/runtime.md)。工具不安装或下载语音模型；对白需要听辨确认。
+
+回归测试：`python3 -m unittest discover -s tests -v`。测试使用合成素材，无须家庭原片。
